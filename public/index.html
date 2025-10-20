@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO₂ Monitor Dashboard</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database-compat.js"></script>
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    :root {
+      --bg: #0e141b;
+      --panel: #121c24;
+      --text: #cce7ff;
+      --accent: #26b3ff;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: var(--accent);
+      margin-top: 20px;
+      font-size: 1.8em;
+    }
+
+    select {
+      background: #1e2a35;
+      color: var(--text);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      margin-left: 8px;
+      font-size: 15px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      padding: 10px;
+    }
+
+    .chart-container, .map-container {
+      background: var(--panel);
+      border-radius: 18px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+      padding: 15px;
+    }
+
+    .chart-container {
+      width: 60%;
+      min-width: 380px;
+      height: 420px;
+    }
+
+    .map-container {
+      width: 30%;
+      min-width: 320px;
+      height: 420px;
+      position: relative;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    #latest {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--text);
+      margin-top: 10px;
+    }
+
+    /* --- Responsive adjustments for mobile --- */
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .chart-container,
+      .map-container {
+        width: 90%;
+        height: auto;
+      }
+
+      #latest {
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>CO₂ Monitor Dashboard</h1>
+  <label>Time Range:</label>
+  <select id="timeRange">
+    <option>Last Hour</option>
+    <option>Last 12 Hours</option>
+    <option>Today</option>
+    <option>Last 7 Days</option>
+    <option>Last Month</option>
+    <option>All Time</option>
+  </select>
+
+  <div class="container">
+    <div class="chart-container">
+      <canvas id="co2Chart"></canvas>
+    </div>
+
+    <div class="map-container">
+      <div id="map"></div>
+      <div id="latest">Latest: -- ppm</div>
+    </div>
+  </div>
+
+  <script>
+    // --- Firebase Config ---
+    const firebaseConfig = {
+      apiKey: "AIzaSyCV6nLejaXVDasEN6sZNx6E3m8LQbt4z-E",
+      authDomain: "co2-sensor-ethan.firebaseapp.com",
+      databaseURL: "https://co2-sensor-ethan-default-rtdb.firebaseio.com",
+      projectId: "co2-sensor-ethan",
+      storageBucket: "co2-sensor-ethan.firebasestorage.app",
+      messagingSenderId: "369605628219",
+      appId: "1:369605628219:web:4725ce681b84272d8f671e"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // --- Chart Setup ---
+    const ctx = document.getElementById('co2Chart').getContext('2d');
+    const co2Chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: "CO₂ (ppm)",
+          borderColor: "#26b3ff",
+          backgroundColor: "rgba(38,179,255,0.15)",
+          data: [],
+          tension: 0.3,
+          pointRadius: 5,
+          borderWidth: 2,
+          pointBackgroundColor: "#26b3ff",
+          pointHoverBackgroundColor: "#26b3ff"
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            ticks: {
+              color: "#cce7ff",
+              callback: function(value) {
+                const date = new Date(this.getLabelForValue(value));
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+              }
+            },
+            grid: { color: "rgba(255,255,255,0.1)" }
+          },
+          y: {
+            ticks: { color: "#cce7ff" },
+            grid: { color: "rgba(255,255,255,0.1)" },
+            title: { display: true, text: "ppm", color: "#cce7ff" }
+          }
+        },
+        plugins: {
+          legend: { labels: { color: "#cce7ff" } }
+        }
+      }
+    });
+
+    // --- Map Setup ---
+    const map = L.map('map', { zoomControl: false }).setView([45.5152, -122.6784], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '' }).addTo(map);
+    let marker, label;
+
+    function getColor(ppm) {
+      if (ppm >= 3000) return "black";
+      if (ppm >= 2000) return "red";
+      if (ppm >= 1200) return "yellow";
+      if (ppm >= 700) return "white";
+      return "green";
+    }
+
+    function fetchData() {
+      db.ref("readings").limitToLast(2000).once("value", snapshot => {
+        const data = snapshot.val();
+        if (!data) return;
+
+        const entries = Object.values(data);
+        const now = Date.now();
+        const range = document.getElementById("timeRange").value;
+
+        const filtered = entries.filter(e => {
+          if (!e.timestamp) return false;
+          const diff = now - e.timestamp * 1000;
+          switch (range) {
+            case "Last Hour": return diff < 3600000;
+            case "Last 12 Hours": return diff < 43200000;
+            case "Today": return diff < 86400000;
+            case "Last 7 Days": return diff < 604800000;
+            case "Last Month": return diff < 2592000000;
+            default: return true;
+          }
+        });
+
+        const labels = filtered.map(e => new Date(e.timestamp * 1000));
+        const co2Values = filtered.map(e => e.co2);
+        co2Chart.data.labels = labels;
+        co2Chart.data.datasets[0].data = co2Values;
+        co2Chart.update();
+
+        if (filtered.length > 0) {
+          const latest = filtered[filtered.length - 1];
+          const ppm = latest.co2;
+          document.getElementById("latest").textContent = `Latest: ${ppm} ppm`;
+
+          const color = getColor(ppm);
+          const textColor = color === "black" ? "white" : "black";
+
+          if (marker) map.removeLayer(marker);
+          if (label) map.removeLayer(label);
+
+          const markerHtml = `
+            <div style="
+              background:${color};
+              color:${textColor};
+              width:38px;
+              height:38px;
+              border-radius:50%;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-weight:bold;
+              font-size:13px;
+              border:2px solid rgba(255,255,255,0.5);
+            ">${ppm}</div>`;
+
+          const customIcon = L.divIcon({ html: markerHtml, className: '', iconSize: [38, 38] });
+          const lat = 45.5152;
+          const lon = -122.6784;
+          const locationName = "Portland";
+
+          marker = L.marker([lat, lon], { icon: customIcon }).addTo(map);
+          const labelHtml = `
+            <div style="
+              position: relative;
+              top: -18px;
+              left: 45px;
+              color: white;
+              font-size: 15px;
+              font-weight: bold;
+              text-shadow: 1px 1px 3px black;
+              background: rgba(0,0,0,0.4);
+              padding: 3px 6px;
+              border-radius: 8px;
+              white-space: nowrap;
+            ">${locationName}</div>`;
+          label = L.marker([lat, lon], {
+            icon: L.divIcon({ html: labelHtml, className: '' })
+          }).addTo(map);
+        }
+      });
+    }
+
+    setInterval(fetchData, 30000);
+    document.getElementById("timeRange").addEventListener("change", fetchData);
+    fetchData();
+  </script>
+</body>
+</html>
