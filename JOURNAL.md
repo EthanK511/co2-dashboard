@@ -593,11 +593,19 @@ if you dont see anything than my arduino is probably going through a midlife cri
 
 finally got this live after firebase decided my security was not up to par, oh well  
 
-## 10/21/2025 - UPDATED bom.csv  
+## 10/21/2025 8 AM - UPDATED bom.csv  
 
 I updated the bom.csv to look nice and have tax, I also live in Oregon so I included an option that does not include tax, the updated values and calculations are in the latest GitHub repository linked at the header of this page.
 
 ![Screenshot 2025-10-21 8.47.39 AM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDA3OCwicHVyIjoiYmxvYl9pZCJ9fQ==--c416c4cea392d122621b84ed1b5621ea2ed4e790/Screenshot%202025-10-21%208.47.39%20AM.png)
 
   
+
+## 10/21/2025 12 PM - 3D printed enclosure  
+
+began working on the enclosure to house the electronics, the plan is to print these with pla and spay paint them with a clear coat to make them water tight
+
+![Screenshot 2025-10-21 12.41.31 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDE2NywicHVyIjoiYmxvYl9pZCJ9fQ==--455e286e7a55bd60305f823c43bec8f961080348/Screenshot%202025-10-21%2012.41.31%20PM.png)
+
+trying to figure out the best way to do this having no experience with onshape but determined to learn cad  
 
