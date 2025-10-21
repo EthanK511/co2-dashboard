@@ -574,7 +574,7 @@ the app icon shuld apper along with the default name
 click done
 view on your home screen
 
-![Screenshot 2025-10-20 at 8.47.23 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNiwicHVyIjoiYmxvYl9pZCJ9fQ==--b05396bb7a102bbda48d120e957bfa87e887e921/Screenshot%202025-10-20%20at%208.47.23%E2%80%AFPM.png)
+
 ![Screenshot 2025-10-20 at 8.46.57 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNSwicHVyIjoiYmxvYl9pZCJ9fQ==--160b36aaacf425f9728d9e431f7085f55b5d42f5/Screenshot%202025-10-20%20at%208.46.57%E2%80%AFPM.png)
 ![Screenshot 2025-10-20 at 8.46.19 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNCwicHVyIjoiYmxvYl9pZCJ9fQ==--198220961574a2b56fb770bb452ada4636371dec/Screenshot%202025-10-20%20at%208.46.19%E2%80%AFPM.png)
   
