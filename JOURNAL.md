@@ -556,10 +556,26 @@ every line of this code has been tested and works but there's more on the horizo
 
 took me a minute to get this done tho  
 
-## 10/20/2025 8 PM - Bug fix  
+## 10/20/2025 8:43 PM - Bug fix  
 
 fixed a bug whare when the web app was deployed from safari on iphone the map would not load correctly ***has ben updated in the latest GitHub repository***
 
 ![Screenshot 2025-10-20 at 8.41.42 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzMywicHVyIjoiYmxvYl9pZCJ9fQ==--5270cab94c2647db3315191798117c06940a33bb/Screenshot%202025-10-20%20at%208.41.42%E2%80%AFPM.png)
+  
+
+## 10/20/2025 8:48 PM - Iphone web app on home screen tutorial  
+
+To add the web app to your iphones home screen:
+
+at the bottom of the page in sefari click the 3 dots
+click share
+scroll down to add to home screen
+the app icon shuld apper along with the default name
+click done
+view on your home screen
+
+![Screenshot 2025-10-20 at 8.47.23 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNiwicHVyIjoiYmxvYl9pZCJ9fQ==--b05396bb7a102bbda48d120e957bfa87e887e921/Screenshot%202025-10-20%20at%208.47.23%E2%80%AFPM.png)
+![Screenshot 2025-10-20 at 8.46.57 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNSwicHVyIjoiYmxvYl9pZCJ9fQ==--160b36aaacf425f9728d9e431f7085f55b5d42f5/Screenshot%202025-10-20%20at%208.46.57%E2%80%AFPM.png)
+![Screenshot 2025-10-20 at 8.46.19 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNCwicHVyIjoiYmxvYl9pZCJ9fQ==--198220961574a2b56fb770bb452ada4636371dec/Screenshot%202025-10-20%20at%208.46.19%E2%80%AFPM.png)
   
 
