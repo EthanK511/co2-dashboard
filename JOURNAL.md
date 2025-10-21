@@ -579,3 +579,17 @@ view on your home screen
 ![Screenshot 2025-10-20 at 8.46.19 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNCwicHVyIjoiYmxvYl9pZCJ9fQ==--198220961574a2b56fb770bb452ada4636371dec/Screenshot%202025-10-20%20at%208.46.19%E2%80%AFPM.png)
   
 
+## 10/20/2025 8:53 PM - VIEW MY PROJECT  
+
+IM LIVE 
+
+my sensor shuld be live right now check this link
+
+[THIS LINK](https://co2-sensor-ethan.web.app)
+
+if you dont see anything than my arduino is probably going through a midlife crisis however if you select the all time option you can see past datapoints
+
+![Screenshot 2025-10-20 at 8.52.10 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzkzNywicHVyIjoiYmxvYl9pZCJ9fQ==--52fa21b8d35afcc9997084a11b383959efdac5c6/Screenshot%202025-10-20%20at%208.52.10%E2%80%AFPM.png)
+
+finally got this live after firebase decided my security was not up to par, oh well  
+
