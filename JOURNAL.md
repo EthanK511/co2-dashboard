@@ -593,3 +593,11 @@ if you dont see anything than my arduino is probably going through a midlife cri
 
 finally got this live after firebase decided my security was not up to par, oh well  
 
+## 10/21/2025 - UPDATED bom.csv  
+
+I updated the bom.csv to look nice and have tax, I also live in Oregon so I included an option that does not include tax, the updated values and calculations are in the latest GitHub repository linked at the header of this page.
+
+![Screenshot 2025-10-21 8.47.39 AM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDA3OCwicHVyIjoiYmxvYl9pZCJ9fQ==--c416c4cea392d122621b84ed1b5621ea2ed4e790/Screenshot%202025-10-21%208.47.39%20AM.png)
+
+  
+
