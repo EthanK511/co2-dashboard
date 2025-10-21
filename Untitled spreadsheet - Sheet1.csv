@@ -1,0 +1,16 @@
+NAME,LINK,DESCRIPTION,QUANTITY,PRICE,TOTAL,WITH TAX
+EXTR LONG CABLE (Brick Not Included),"Anker USB C to USB C Cable, Type-C Charging Cord Fast Charge(10FT,100W), for iPhone 17/17 pro, MacBook and More(Black)",ONLY FOR ASAMBILYS WITHOUT SOLAR,1,$10,$10,$11
+Solar Panel to usb c Adapter,https://voltaicsystems.com/A123/?srsltid=ARcRdnpZhGIsUnZvDEHYqRBgouHOSAYhCDPhYbb_dw5GCLbX_nNUh96N,ONLY FOR ASAMBILYS WITH SOLAR,1,$3,$3,$3
+5w Solar Panel,https://voltaicsystems.com/5-watt-panel-etfe/?srsltid=AfmBOooL86R8PIILOvCQrUsmhZB22ogt3JSQnO1rlg2xfBjnkRQNWXAf,ONLY FOR ASAMBILYS WITH SOLAR,1,$35,$35,$37
+"Anker 20,000 mah Battery",https://www.anker.com/products/a1268?variant=37438338695318&collections_high-capacity-power-bank&Sort_by=Recommended,ONLY FOR ASAMBILYS WITH SOLAR,1,$50,$50,$53
+Jumper cables,Amazon.com: 40pcs 10 cm (4 inch) Female to Female Multicolored Dupont Wire Breadboard Jumper Ribbon Cables Compatible with Arduino Projects(F/F),to connect k30 with the arduino,4,"$5 for 40 pcs
+$0.44 for 4
+$0.11 for 1",0.44,0.47
+Header pins pice 4 X1,MECCANIXITY Straight Pin Header DIP Single Row 4 Pin 2.54mm Pitch Gold Plated for PCB Pack of 50: Amazon.com,to soder to the k30 for pin connections,1,"$7.99 for 50
+$0.14 for 1",0.14,0.15
+K30 Co2 sensor,https://www.co2meter.com/products/k-30-co2-sensor-module?variant=42786804793542,the sensor for the co2,1,"$85
+Sometimes on sale",85,90.63
+Arduino uno r4 wifi,"Amazon.com: Arduino UNO R4 WiFi [ABX00087] � Renesas RA4M1 + ESP32-S3, Wi-Fi, Bluetooth, USB-C, CAN, 12-bit DAC, OP AMP, Qwiic Connector, 12x8 LED Matrix for Advanced IoT & Embedded Projects",microcontroler,1,$30,$30,$32
+6inch power data usb c to a cable x2,"Amazon.com: USB A to USB C 3.1/3.2 Gen 2 Cable 10Gbps Data Transfer (6inch/0.5FT), Short USB C SSD Cable with 60W QC 3.0 Fast Charging, Spare Cord for Samsung T7, SanDisk Extreme Portable SSD, Crucial X8, WD : Electronics",to transfer opwer and data to the arduino,2,$7,$14,$15
+TOTAL,,,$149,$232,$218,$140
+,,,PLUG IN,SOLAR,TAX FREE,
