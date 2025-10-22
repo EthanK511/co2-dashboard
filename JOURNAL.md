@@ -609,9 +609,18 @@ began working on the enclosure to house the electronics, the plan is to print th
 
 trying to figure out the best way to do this having no experience with onshape but determined to learn cad  
 
-## 10/22/2025 - That Cant Be Good  
+## 10/22/2025 7 AM - That Cant Be Good  
 
 I woke up this morning to find that my updated code from the previous night had caused an error where the HTML web page was reading over 50,000 ppm "that cant be right" is thought to myself. Anyway I reset the device and that seemed to fix it will check the error log and firebase data
 
 ![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDQwOCwicHVyIjoiYmxvYl9pZCJ9fQ==--1e30c18386b4c0b57ea8a07c936d81e88509bdc6/image.png)  
+
+## 10/22/2025 8 AM - Assembling the Enclosure  
+
+A few YouTube videos later and I've made the top of the box slide in the hole it belongs in, only issue is how to print it with the least amount of supports
+
+I may also flip the whole thing to make it more waterproof having the door/access panel on the bottom so the electronics cant get flooded.
+
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDQzOCwicHVyIjoiYmxvYl9pZCJ9fQ==--81cfc44e4c8fd304962cfd1e221583483206e17f/image.png)
+  
 
