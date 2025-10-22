@@ -624,3 +624,10 @@ I may also flip the whole thing to make it more waterproof having the door/acces
 ![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDQzOCwicHVyIjoiYmxvYl9pZCJ9fQ==--81cfc44e4c8fd304962cfd1e221583483206e17f/image.png)
   
 
+## 10/22/2025 10 AM - Fixed Dashbord?  
+
+After resetting the device and checking the error codes I did not see anything that would have caused this, I reset the device and its working normally now, I'm going to remove the bad data from the database so future calculations and things are not affected, also working on fixing a bug where a mobile display of the web app used mobile graph sizes and an other bug where the colored dot is not correctly displayed on the map when viewed in fullscreen.
+
+![Screenshot 2025-10-22 10.21.12 AM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDQ4NiwicHVyIjoiYmxvYl9pZCJ9fQ==--5a8f268371b7b7aa0e2c2b7e4830b1fb6896e44b/Screenshot%202025-10-22%2010.21.12%20AM.png)
+  
+
