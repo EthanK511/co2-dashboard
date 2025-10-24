@@ -631,3 +631,14 @@ After resetting the device and checking the error codes I did not see anything t
 ![Screenshot 2025-10-22 10.21.12 AM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDQ4NiwicHVyIjoiYmxvYl9pZCJ9fQ==--5a8f268371b7b7aa0e2c2b7e4830b1fb6896e44b/Screenshot%202025-10-22%2010.21.12%20AM.png)
   
 
+## 10/23/2025 - Bug Fixing  
+
+Fixed a bug involving the rendering of the graph in some desktop formats.
+
+Fixed a bug involving the incorrect reading of CO2 after the website was reloaded repeatedly
+
+Fixed a bug where older versions of Chrome would repeatedly crash after opening the page and selecting an alternate time frame.
+
+![Screenshot 2025-10-23 6.36.15 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDk0NiwicHVyIjoiYmxvYl9pZCJ9fQ==--0e319851c1254442233b219ec77122588ee98108/Screenshot%202025-10-23%206.36.15%20PM.png)
+  
+
