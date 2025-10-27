@@ -642,12 +642,19 @@ Fixed a bug where older versions of Chrome would repeatedly crash after opening 
 ![Screenshot 2025-10-23 6.36.15 PM.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NDk0NiwicHVyIjoiYmxvYl9pZCJ9fQ==--0e319851c1254442233b219ec77122588ee98108/Screenshot%202025-10-23%206.36.15%20PM.png)
   
 
-## 10/27/2025 - Web App Updates  
+## 10/27/2025 7:50 AM - Web App Updates  
 
 I've updated the web app with a new color scheme, a more accurate graph, and a map; however, I'm still experiencing issues with the CO2 sensor reading -1 ppm.
 
 ![Screenshot 2025-10-27 7.49.39 AM](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTk2OCwicHVyIjoiYmxvYl9pZCJ9fQ==--24ac472f94d66f51fe9a70917b2fe464da84cf8f/Screenshot%202025-10-27%207.49.39%20AM.png)
 
 
+  
+
+## 10/27/2025 7:53 AM - 3D Printed case  
+
+It looks okay. I'm going to try to make it better and easier to print without supports. Let me know if you have any ideas. I'm also going to make multiple versions to suit all of the types of power sources.
+
+![Screenshot 2025-10-27 7.53.12 AM](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTk3MCwicHVyIjoiYmxvYl9pZCJ9fQ==--f34ca83f9b017d1441fc433c74ddefeeaafcf18e/Screenshot%202025-10-27%207.53.12%20AM.png)
   
 
