@@ -658,3 +658,11 @@ It looks okay. I'm going to try to make it better and easier to print without su
 ![Screenshot 2025-10-27 7.53.12 AM](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTk3MCwicHVyIjoiYmxvYl9pZCJ9fQ==--f34ca83f9b017d1441fc433c74ddefeeaafcf18e/Screenshot%202025-10-27%207.53.12%20AM.png)
   
 
+## 11/3/2025 - Long Term Testing and Web App Redesign  
+
+I've completely redone the web app to make it look nicer and load more efficiently. In addition, after a week or so of testing, I've optimized the Firebase database rules to improve security.
+Other updates include auto-excluding negative numbers and working on a fix for unusually high readings.
+
+![Screenshot 2025-11-03 10.08.04 AM](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODEyNCwicHVyIjoiYmxvYl9pZCJ9fQ==--ef81da6fe85075709bf1a5a693b15b3b5de113cc/Screenshot%202025-11-03%2010.08.04%20AM.png)
+  
+
