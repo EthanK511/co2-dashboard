@@ -663,6 +663,8 @@ It looks okay. I'm going to try to make it better and easier to print without su
 I've completely redone the web app to make it look nicer and load more efficiently. In addition, after a week or so of testing, I've optimized the Firebase database rules to improve security.
 Other updates include auto-excluding negative numbers and working on a fix for unusually high readings.
 
+Added animations to make the site feel more polished: rotating number scroller, pulsing map particles, and smooth data point transitions.
+
 ![Screenshot 2025-11-03 10.08.04 AM](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODEyNCwicHVyIjoiYmxvYl9pZCJ9fQ==--ef81da6fe85075709bf1a5a693b15b3b5de113cc/Screenshot%202025-11-03%2010.08.04%20AM.png)
   
 
