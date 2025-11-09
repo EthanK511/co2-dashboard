@@ -679,10 +679,21 @@ New Device Total: $50 Plug in | $120 Solar
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODE0MSwicHVyIjoiYmxvYl9pZCJ9fQ==--5a87a2566c98cf122368667a1f618627efbea297/image.png)
   
 
-## 11/8/2025 - Updated Repository, Created Instructions PDF  
+## 11/8/2025 6:45 PM - Updated Repository, Created Instructions PDF  
 
 ive spent a while going through everything developing instructions for anyone to follow from start to finish with any version of this device. the finished pdf will be available soon
 
 ![Screenshot 2025-11-08 at 6.45.34 PM](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTY0NywicHVyIjoiYmxvYl9pZCJ9fQ==--d2a97a7d84d258179dbdaf05d1daa0e79988aa47/Screenshot%202025-11-08%20at%206.45.34%E2%80%AFPM.png)
+  
+
+## 11/8/2025 6:57 PM - PDF IS HERE  
+
+[🌿 CO₂ Monitor Assembly and Setup Guide 3.1](/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTY0OCwicHVyIjoiYmxvYl9pZCJ9fQ==--615cc46916f4c2106ec91fdb8e51d3c93e808236/%F0%9F%8C%BF%20CO%E2%82%82%20Monitor%20Assembly%20and%20Setup%20Guide%203.1.pdf)
+
+This is the final setup for this project, thank you for reading
+
+Im done yay
+
+![whitecloud-onblack-drawn](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTY0OSwicHVyIjoiYmxvYl9pZCJ9fQ==--afd05757df17b43ad290f25bdcb45db20121079d/whitecloud-onblack-drawn.png)
   
 
