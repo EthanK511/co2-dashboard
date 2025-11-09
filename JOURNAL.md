@@ -679,3 +679,12 @@ New Device Total: $50 Plug in | $120 Solar
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODE0MSwicHVyIjoiYmxvYl9pZCJ9fQ==--5a87a2566c98cf122368667a1f618627efbea297/image.png)
   
 
+## 11/8/2025 - Updated Repository, Created Instructions PDF  
+
+ive spent a while going through everything developing instructions for anyone to follow from start to finish with any version of this device.
+
+[🌿 CO₂ Monitoring Device — Full Assembly and Setup Guide](/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTY0NiwicHVyIjoiYmxvYl9pZCJ9fQ==--98eaf790ad08e962ff6d57223c9a73f49063bd2c/%F0%9F%8C%BF%20CO%E2%82%82%20Monitoring%20Device%20%E2%80%94%20Full%20Assembly%20and%20Setup%20Guide.pdf)
+
+![Screenshot 2025-11-08 at 6.45.34 PM](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTY0NywicHVyIjoiYmxvYl9pZCJ9fQ==--d2a97a7d84d258179dbdaf05d1daa0e79988aa47/Screenshot%202025-11-08%20at%206.45.34%E2%80%AFPM.png)
+  
+
