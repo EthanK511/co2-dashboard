@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>CO₂ Monitor v6.1</title>
+
+<link rel="icon" href="icons/whitecloud-transparent-drawn-alt.png" />
+<meta name="theme-color" content="#07151a">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database-compat.js"></script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+:root {
+  --accent: #00bfa6;
+  --amber: #ffb300;
+  --text: #e6f4fb;
+  --muted: #9fb7c8;
+  --glass-bg: rgba(255,255,255,0.05);
+  --bg-dark: linear-gradient(145deg, #07151a, #081922);
+  --offline-glow: rgba(255, 60, 60, 0.25);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: "Inter", "SF Pro Display", "Segoe UI", sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  transition: background 0.6s ease;
+  overflow: hidden;
+}
+
+body.offline::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 120px 60px var(--offline-glow);
+  animation: offlineGlow 3s infinite ease-in-out;
+  pointer-events: none;
+}
+@keyframes offlineGlow {
+  0%,100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+/* HEADER */
+header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  backdrop-filter: blur(16px);
+  background: var(--glass-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand img { height: 36px; width: 36px; border-radius: 8px; }
+.title { font-weight: 700; font-size: 1rem; }
+.version { color: var(--muted); margin-left: 6px; }
+
+.controls { display: flex; gap: 10px; align-items: center; }
+#pointCount {
+  font-size: 12px;
+  color: var(--muted);
+  margin-left: 6px;
+}
+select {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+}
+
+/* LAYOUT */
+main {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 64px);
+  gap: 12px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+.panel {
+  flex: 1;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(18px) saturate(180%);
+  box-shadow: 0 10px 30px rgba(3,12,16,0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* LIVE DISPLAY */
+.live-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.odometer {
+  display: flex;
+  gap: 4px;
+  perspective: 600px;
+}
+.digit {
+  position: relative;
+  width: 36px;
+  height: 64px;
+  overflow: hidden;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.digit-inner {
+  position: absolute;
+  top: 0;
+  transition: transform 0.8s cubic-bezier(0.25,0.1,0.25,1);
+}
+.ppmLabel {
+  color: var(--muted);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.liveMeta { color: var(--muted); margin-top: 6px; font-size: 13px; }
+
+/* LEGEND */
+.legend {
+  width: 90%;
+  margin: 12px auto;
+}
+.legend-bar {
+  height: 18px;
+  border-radius: 10px;
+  background: linear-gradient(to right,#00c853,#ffeb3b,#ff9800,#f44336);
+}
+.legend-ticks {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+/* MAP */
+#map {
+  flex: 1;
+  border-radius: 12px;
+  transition: opacity 0.4s ease;
+  pointer-events: auto;
+}
+
+/* CHART */
+.chart-container {
+  flex: 1;
+  padding: 20px;
+  animation: fadeIn 0.6s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  main { flex-direction: column; }
+  .panel { height: 50vh; }
+  .digit { font-size: 48px; height: 48px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="icons/whitecloud-transparent-drawn-main.png" />
+    <div class="title">CO₂ Monitor</div>
+    <div class="version">6.1</div>
+  </div>
+  <div class="controls">
+    <select id="deviceSelect"></select>
+    <select id="rangeSelect">
+      <option>Last Hour</option>
+      <option>Last 12 Hours</option>
+      <option>Today</option>
+      <option>Last 7 Days</option>
+      <option>Last Month</option>
+      <option>All Time</option>
+    </select>
+    <span id="pointCount">0 points</span>
+  </div>
+</header>
+
+<main>
+  <div class="panel">
+    <div class="live-container">
+      <div class="odometer" id="odometer"></div>
+      <div class="ppmLabel">PPM</div>
+      <div class="liveMeta" id="liveMeta">—</div>
+    </div>
+    <div class="legend">
+      <div class="legend-bar"></div>
+      <div class="legend-ticks">
+        <span>400</span><span>800</span><span>1200</span><span>2000+</span>
+      </div>
+    </div>
+    <div id="map"></div>
+  </div>
+
+  <div class="panel chart-container">
+    <canvas id="co2Chart"></canvas>
+  </div>
+</main>
+
+<script>
+/* Firebase */
+const firebaseConfig = { //copy pase these from FIREBASE/SETTINGS/PROJECTSETTINGS/GENERAL/WEBAPP
+  apiKey: " ",
+  authDomain: " ",
+  databaseURL: " ",
+  projectId: " ",
+  storageBucket: " ",
+  messagingSenderId: " ",
+  appId: " ",
+  measurementId: " "
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+const odometer = document.getElementById("odometer");
+const liveMeta = document.getElementById("liveMeta");
+const deviceSelect = document.getElementById("deviceSelect");
+const rangeSelect = document.getElementById("rangeSelect");
+const pointCount = document.getElementById("pointCount");
+
+let currentDevice = null;
+let marker = null;
+let listener = null;
+
+/* Chart */
+const ctx = document.getElementById("co2Chart").getContext("2d");
+const co2Chart = new Chart(ctx,{
+  type:"line",
+  data:{labels:[],datasets:[{
+    label:"CO₂",
+    data:[],
+    borderColor:"#00bfa6",
+    backgroundColor:"rgba(0,191,166,0.08)",
+    fill:true,tension:0.3,pointRadius:2
+  }]},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    scales:{
+      y:{ticks:{color:"#9fb7c8"},grid:{color:"rgba(255,255,255,0.05)"}},
+      x:{ticks:{color:"#9fb7c8",maxTicksLimit:12},grid:{color:"rgba(255,255,255,0.05)"}}
+    },
+    plugins:{legend:{display:false}},
+    animation:{duration:800,easing:"easeInOutCubic"}
+  }
+});
+
+/* Map */
+const map = L.map("map",{zoomControl:false,scrollWheelZoom:false,dragging:true}).setView([45.5152,-122.6784],8);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:""}).addTo(map);
+
+/* Devices */
+db.ref("readings").once("value").then(snap=>{
+  const devices=Object.keys(snap.val()||{});
+  devices.forEach(d=>{
+    const o=document.createElement("option");
+    o.value=d;o.textContent=d;deviceSelect.appendChild(o);
+  });
+  currentDevice=devices[0];deviceSelect.value=currentDevice;
+  startListening();
+});
+deviceSelect.addEventListener("change",()=>{currentDevice=deviceSelect.value;startListening();});
+rangeSelect.addEventListener("change",startListening);
+
+/* Offline indicator */
+setInterval(()=>{
+  if(!currentDevice)return;
+  db.ref("readings/"+currentDevice).limitToLast(1).once("value",snap=>{
+    const data=Object.values(snap.val()||{})[0];
+    const t=data?.timestamp||0;
+    document.body.classList.toggle("offline",(Date.now()/1000-t)>600);
+  });
+},60000);
+
+/* Listening */
+function startListening(){
+  if(!currentDevice)return;
+  if(listener)listener.off();
+  listener=db.ref("readings/"+currentDevice);
+  listener.on("value",snap=>{
+    const data=snap.val();
+    if(!data)return;
+    const arr=Object.values(data).filter(e=>e.co2&&e.co2>0);
+    if(!arr.length)return;
+
+    const now=Date.now();
+    const range=rangeSelect.value;
+    const limits={
+      "Last Hour":3600000,"Last 12 Hours":43200000,"Today":86400000,
+      "Last 7 Days":604800000,"Last Month":2592000000
+    };
+    const step={
+      "Last Hour":1,"Last 12 Hours":2,"Today":3,"Last 7 Days":5,"Last Month":10,"All Time":20
+    }[range]||1;
+
+    const filtered=range==="All Time"?arr:arr.filter(e=>now-e.timestamp*1000<(limits[range]||Infinity));
+    const sampled=filtered.filter((_,i)=>i%step===0);
+    const latest=filtered[filtered.length-1];
+    pointCount.textContent=`${filtered.length.toLocaleString()} points`;
+
+    updateOdometer(latest.co2);
+    liveMeta.textContent=new Date(latest.timestamp*1000).toLocaleTimeString([],{
+      hour:"2-digit",minute:"2-digit"
+    });
+
+    let color;
+    if(latest.co2>2000)color="#f44336";
+    else if(latest.co2>1200)color="#ff9800";
+    else if(latest.co2>800)color="#ffeb3b";
+    else color="#00c853";
+
+    if(marker)map.removeLayer(marker);
+    const html=`<div style="width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:${color};color:#000;font-weight:700;animation:pulseMarker 2s infinite ease-in-out;">${latest.co2}</div>`;
+    marker=L.marker([45.5152,-122.6784],{icon:L.divIcon({html,className:""})}).addTo(map);
+
+    co2Chart.data.labels=sampled.map(e=>{
+      const d=new Date(e.timestamp*1000);
+      return (range==="All Time"||range==="Last Month"||range==="Last 7 Days")?
+        d.toLocaleDateString([], {month:"short",day:"numeric"}):
+        d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+    });
+    co2Chart.data.datasets[0].data=sampled.map(e=>e.co2);
+    co2Chart.update();
+  });
+}
+
+/* Marker pulse */
+const style=document.createElement("style");
+style.textContent=`@keyframes pulseMarker{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.2);opacity:.8;}}`;
+document.head.appendChild(style);
+
+/* Odometer animation */
+function updateOdometer(value) {
+  const digits = String(value).split("");
+  const existing = odometer.querySelectorAll(".digit-inner");
+
+  if (existing.length === 0) {
+    digits.forEach(d => {
+      const el = document.createElement("div");
+      el.className = "digit";
+      const inner = document.createElement("div");
+      inner.className = "digit-inner";
+      for (let n = 0; n <= 9; n++) {
+        const span = document.createElement("div");
+        span.textContent = n;
+        span.style.height = "64px";
+        inner.appendChild(span);
+      }
+      inner.style.transform = `translateY(-${d * 64}px)`;
+      el.appendChild(inner);
+      odometer.appendChild(el);
+    });
+    return;
+  }
+
+  digits.forEach((d, i) => {
+    const inner = existing[i];
+    if (!inner) return;
+    const currentOffset = parseInt(inner.style.transform.match(/-(\d+)/)?.[1] || "0");
+    const currentDigit = Math.round(currentOffset / 64);
+    if (currentDigit !== Number(d)) {
+      inner.style.transition = "transform 0.8s cubic-bezier(0.25,0.1,0.25,1)";
+      inner.style.transform = `translateY(-${d * 64}px)`;
+    }
+  });
+
+  if (digits.length > existing.length) {
+    for (let j = existing.length; j < digits.length; j++) {
+      const el = document.createElement("div");
+      el.className = "digit";
+      const inner = document.createElement("div");
+      inner.className = "digit-inner";
+      for (let n = 0; n <= 9; n++) {
+        const span = document.createElement("div");
+        span.textContent = n;
+        span.style.height = "64px";
+        inner.appendChild(span);
+      }
+      inner.style.transform = `translateY(-${digits[j] * 64}px)`;
+      el.appendChild(inner);
+      odometer.appendChild(el);
+    }
+  }
+}
+</script>
+</body>
+</html>

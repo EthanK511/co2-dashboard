@@ -1,0 +1,12 @@
+{
+  "name": "CO₂ Monitor",
+  "short_name": "CO2 Monitor",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0b121a",
+  "theme_color": "#0b121a",
+  "icons": [
+    { "src": "/icons/whitecloud.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/whitecloud-onblack.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
